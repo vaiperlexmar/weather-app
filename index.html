@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <button>Search Openner</button>
+        <h1>Name of city</h1>
+      </header>
+
+      <main>
+        <div class="today-forecast">
+          <p id="today-forecast__date">Date</p>
+          <p>Present weather</p>
+
+          <p>Present temp</p>
+          <h2 class="heading-secondary">Daily Summary</h2>
+          <p>
+            Если температура меньше чем она есть на самом деле, то первая фраза
+            - Now it feels like +35', actually +31'.
+
+            <br />
+            Если температура больше, то Now it seems that +25', in fact +28'.
+
+            <br />
+            Далее нужно подкрутить определение влажности и от этого прыгать.
+
+            <br />
+            После этого нужно каким-то образом взять самый высокий и низкий
+            порог температуры дня и вывести его значения во фразе с range.
+          </p>
+        </div>
+        <div class="weekly-forecast">
+          <h2 class="heading-secondary">Weekly forecast</h2>
+          <div class="weekly-forecast__list">
+            <div class="weekly-forecast__item"></div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="/js/main.js"></script>
+  </body>
+</html>
