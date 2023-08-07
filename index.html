@@ -7,17 +7,17 @@
   </head>
   <body>
     <div id="app">
-      <header>
-        <button>Search Openner</button>
-        <h1>Name of city</h1>
+      <header class="header">
+        <button class="header__search">Search Openner</button>
+        <h1 class="heading-primary" id="city-name">Name of city</h1>
       </header>
 
       <main>
         <div class="today-forecast">
-          <p id="today-forecast__date">Date</p>
-          <p>Present weather</p>
+          <p class="today-forecast__date">Date</p>
+          <p class="today-forecast__weathercode"></p>
 
-          <p>Present temp</p>
+          <p class="today-forecast__present-temp"></p>
           <h2 class="heading-secondary">Daily Summary</h2>
           <p>
             Если температура меньше чем она есть на самом деле, то первая фраза
@@ -33,6 +33,8 @@
             После этого нужно каким-то образом взять самый высокий и низкий
             порог температуры дня и вывести его значения во фразе с range.
           </p>
+
+          <div class="today-forecast__extra-info"></div>
         </div>
         <div class="weekly-forecast">
           <h2 class="heading-secondary">Weekly forecast</h2>
@@ -42,6 +44,9 @@
         </div>
       </main>
     </div>
-    <script src="/js/main.js"></script>
+    <script type="module" src="/js/main.mjs"></script>
+    <script type="module" src="/js/nowDateFormatter.mjs"></script>
+    <script type="module" src="/js/createTodayForecast.mjs"></script>
+    <script type="module" src="/js/utility-date.mjs"></script>
   </body>
 </html>

@@ -1,9 +1,14 @@
 "use strict";
 
+import nowDateFormatter from "./user-interface/now-date-formatter.mjs";
+import createTodayForecast from "./weather/create-today-forecast.mjs";
+import userPresentDateFormatter from "./user-interface/user-present-date-formatter.mjs";
+
 // Get city
 const GEOCODE_URL = `https://geocode.maps.co/search?q=`;
+const headers = ["tempe"];
 
-let city = "London";
+let city = "Tambov";
 let cityCoordinates;
 
 async function fetchCoordinates() {
@@ -19,6 +24,8 @@ async function fetchCoordinates() {
   }
 }
 
+// Get a forecast
+
 const promise = fetchCoordinates();
 promise
   .then((data) => {
@@ -31,15 +38,18 @@ promise
   })
   .then((cityCoordinates) => {
     const forecast = getForecast(cityCoordinates.lat, cityCoordinates.lon);
-    forecast.then((forecastItem) => {
-      console.log(forecastItem);
-    });
+    return forecast;
+  })
+  .then((forecastItem) => {
+    const now = nowDateFormatter(new Date());
+    createTodayForecast(forecastItem, now);
+    console.log(forecastItem);
   });
 
 async function getForecast(latitude, longitude) {
   try {
     const response = await fetch(
-      `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m`
+      `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}`
     );
     if (!response.ok) {
       throw new Error(`HTTP error: ${response.status}`);
@@ -50,3 +60,12 @@ async function getForecast(latitude, longitude) {
     console.error(`Could not get products: ${error}`);
   }
 }
+
+// Interface info
+
+const todayForecastBlock = document.querySelector(".today-forecast");
+const cityNameBlock = document.querySelector("#city-name");
+const presentDateBlock = document.querySelector(".today-forecast__date");
+
+cityNameBlock.textContent = city;
+presentDateBlock.textContent = userPresentDateFormatter();
