@@ -3,13 +3,15 @@
 import nowDateFormatter from "./user-interface/now-date-formatter.mjs";
 import createTodayForecast from "./weather/create-today-forecast.mjs";
 import userPresentDateFormatter from "./user-interface/user-present-date-formatter.mjs";
+import extraPropertiesHandler from "./weather/extra-properies-handler.mjs";
 
-// Get city
 const GEOCODE_URL = `https://geocode.maps.co/search?q=`;
-const headers = ["tempe"];
+const hourlyHeaders = ["temperature_2m", "weathercode"];
 
 let city = "Tambov";
 let cityCoordinates;
+
+// Get city
 
 async function fetchCoordinates() {
   try {
@@ -49,7 +51,9 @@ promise
 async function getForecast(latitude, longitude) {
   try {
     const response = await fetch(
-      `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}`
+      `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=${hourlyHeaders.join(
+        ","
+      )}`
     );
     if (!response.ok) {
       throw new Error(`HTTP error: ${response.status}`);
@@ -69,3 +73,9 @@ const presentDateBlock = document.querySelector(".today-forecast__date");
 
 cityNameBlock.textContent = city;
 presentDateBlock.textContent = userPresentDateFormatter();
+
+// Extra properties interface
+
+const extraProperties = document.querySelectorAll(".extra-propeties__item");
+
+extraPropertiesHandler(extraProperties, hourlyHeaders);
