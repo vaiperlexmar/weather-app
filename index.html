@@ -19,8 +19,8 @@
 
           <p class="today-forecast__present-temp"></p>
           <h2 class="heading-secondary">Daily Summary</h2>
-          <p>
-            Если температура меньше чем она есть на самом деле, то первая фраза
+          <div class="today-forecast__daily-summary">
+            <!-- Если температура меньше чем она есть на самом деле, то первая фраза
             - Now it feels like +35', actually +31'.
 
             <br />
@@ -32,9 +32,10 @@
             <br />
             После этого нужно каким-то образом взять самый высокий и низкий
             порог температуры дня и вывести его значения во фразе с range.
-          </p>
+          </p> -->
+          </div>
 
-          <div class="today-forecast__extra-info"></div>
+          <div class="today-forecast__advanced-info"></div>
         </div>
         <div class="weekly-forecast">
           <h2 class="heading-secondary">Weekly forecast</h2>
@@ -69,8 +70,5 @@
       </div>
     </div>
     <script type="module" src="/js/main.mjs"></script>
-    <script type="module" src="/js/nowDateFormatter.mjs"></script>
-    <script type="module" src="/js/createTodayForecast.mjs"></script>
-    <script type="module" src="/js/utility-date.mjs"></script>
   </body>
 </html>

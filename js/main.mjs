@@ -6,9 +6,17 @@ import userPresentDateFormatter from "./user-interface/user-present-date-formatt
 import extraPropertiesHandler from "./weather/extra-properies-handler.mjs";
 
 const GEOCODE_URL = `https://geocode.maps.co/search?q=`;
-const hourlyHeaders = ["temperature_2m", "weathercode"];
+const hourlyHeaders = [
+  "temperature_2m",
+  "weathercode",
+  "apparent_temperature",
+  "relativehumidity_2m",
+  "visibility",
+  "windspeed_10m",
+];
+const dailyHeaders = ["temperature_2m_max", "temperature_2m_min"];
 
-let city = "Tambov";
+let city = "Michurinsk";
 let cityCoordinates;
 
 // Get city
@@ -53,7 +61,7 @@ async function getForecast(latitude, longitude) {
     const response = await fetch(
       `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=${hourlyHeaders.join(
         ","
-      )}`
+      )}&daily=${dailyHeaders.join(",")}&timezone=GMT`
     );
     if (!response.ok) {
       throw new Error(`HTTP error: ${response.status}`);
