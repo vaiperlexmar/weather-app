@@ -4,20 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+    <link rel="stylesheet" href="/style/style.css" />
   </head>
   <body>
     <div id="app">
-      <header class="header">
-        <button class="header__search">Search Openner</button>
+      <header class="header m-bottom-medium">
+        <button class="header__search">
+          <span class="material-symbols-outlined"> search </span>
+        </button>
         <h1 class="heading-primary" id="city-name">Name of city</h1>
       </header>
 
       <main>
         <div class="today-forecast">
-          <p class="today-forecast__date">Date</p>
-          <p class="today-forecast__weathercode"></p>
+          <p class="today-forecast__date small-light-text center-text">Date</p>
+          <p
+            class="today-forecast__weathercode medium-light-text center-text"
+          ></p>
 
-          <p class="today-forecast__present-temp"></p>
+          <p class="today-forecast__present-temp large-text"></p>
           <h2 class="heading-secondary">Daily Summary</h2>
           <div class="today-forecast__daily-summary">
             <!-- Если температура меньше чем она есть на самом деле, то первая фраза
@@ -38,10 +47,7 @@
           <div class="advanced-info"></div>
         </div>
         <div class="weekly-forecast">
-          <h2 class="heading-secondary">Weekly forecast</h2>
-          <div class="weekly-forecast__list">
-            <div class="weekly-forecast__item"></div>
-          </div>
+          <h2 class="heading">Weekly forecast</h2>
         </div>
       </main>
 

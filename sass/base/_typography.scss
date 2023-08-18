@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "SF Compact Display";
+  font-weight: 400;
+  src: url("/public/fonts/SFCompactDisplay-Regular.otf");
+}
+
+@font-face {
+  font-family: "SF Compact Display";
+  font-weight: 600;
+  src: url("/public/fonts/SFCompactDisplay-Bold.otf");
+}
+
+.heading-primary {
+  font-size: 2.4rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.small-light-text {
+  font-size: 1.4rem;
+}
+
+.medium-light-text {
+  font-size: 1.8rem;
+}
+
+.large-text {
+  font-size: 20rem;
+}

@@ -1,7 +1,10 @@
 "use strict";
 
 import weathercode from "../utility/weathercode.mjs";
+import weathercode_img from "../utility/weather-icons.mjs";
 import createAdvanceInfoComponent from "./create-advance-info-item.mjs";
+import createWeeklyItemMain from "./create-weekly-item-main.mjs";
+import weeklyDateFormatter from "../user-interface/user-weekly-date-formatter.mjs";
 
 const createTodayForecast = (data, now) => {
   // Temperature formatter
@@ -28,7 +31,7 @@ const createTodayForecast = (data, now) => {
     forecastHourly.temperature_2m[forecastPresentTimeIndex]
   );
 
-  const presentTemperatureStr = formatTemperature(presentTemperature);
+  const presentTemperatureStr = `${presentTemperature}°`;
 
   presentTemperatureBlock.textContent = presentTemperatureStr;
 
@@ -106,26 +109,40 @@ const createTodayForecast = (data, now) => {
     "Wind",
     windSpeed,
     forecastHourlyUnits.windspeed_10m,
-    "/public/images/wind.gif"
+    "/public/images/wind.svg"
   );
 
   const humidutyInfo = createAdvanceInfoComponent(
     "Humidity",
     humiduty,
     forecastHourlyUnits.relativehumidity_2m,
-    "/public/images/humidity.gif"
+    "/public/images/humidity.svg"
   );
 
   const visibilityInfo = createAdvanceInfoComponent(
     "Visibility",
     Math.round(visibility / 1000),
     "km",
-    "/public/images/eye.gif"
+    "/public/images/visibility.svg"
   );
 
   advancedInfoBlock.innerHTML += windSpeedInfo;
   advancedInfoBlock.innerHTML += humidutyInfo;
   advancedInfoBlock.innerHTML += visibilityInfo;
+
+  // Weekly Forecast
+
+  const weeklyForecastBlock = document.querySelector(".weekly-forecast");
+
+  for (let i = 1; i <= 5; i++) {
+    let day = createWeeklyItemMain(
+      formatTemperature(forecastDaily.temperature_2m_max[i]),
+      weathercode_img[forecastDaily.weathercode[i]],
+      weeklyDateFormatter(forecastDaily.time[i])
+    );
+
+    weeklyForecastBlock.innerHTML += day;
+  }
 };
 
 export default createTodayForecast;

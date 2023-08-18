@@ -14,7 +14,11 @@ const hourlyHeaders = [
   "visibility",
   "windspeed_10m",
 ];
-const dailyHeaders = ["temperature_2m_max", "temperature_2m_min"];
+const dailyHeaders = [
+  "temperature_2m_max",
+  "temperature_2m_min",
+  "weathercode",
+];
 
 let city = "Michurinsk";
 let cityCoordinates;
