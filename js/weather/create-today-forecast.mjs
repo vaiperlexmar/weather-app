@@ -1,6 +1,7 @@
 "use strict";
 
 import weathercode from "../utility/weathercode.mjs";
+import createAdvanceInfoComponent from "./create-advance-info-item.mjs";
 
 const createTodayForecast = (data, now) => {
   // Temperature formatter
@@ -18,6 +19,7 @@ const createTodayForecast = (data, now) => {
   );
 
   const forecastHourly = data.hourly;
+  const forecastHourlyUnits = data.hourly_units;
   const forecastPresentTimeIndex = forecastHourly.time.indexOf(now);
   const forecastDaily = data.daily;
 
@@ -46,9 +48,6 @@ const createTodayForecast = (data, now) => {
     forecastHourly.weathercode[forecastPresentTimeIndex];
 
   presentWeatherCodeBlock.textContent = weathercode[presentWeatherCode];
-
-  // Humidity
-  const humidity = forecastHourly.relativehumidity_2m[forecastPresentTimeIndex];
 
   // Daily Summary Block
   const dailySummaryBlock = document.querySelector(
@@ -94,6 +93,39 @@ const createTodayForecast = (data, now) => {
 
   dailySummaryBlock_extraDescription.innerText += `Today, the temperature is felt in the range from ${todayMinTemperatureStr} to ${todayMaxTemperatureStr}`;
   dailySummaryBlock.append(dailySummaryBlock_extraDescription);
+
+  // Today forecast advanced information
+
+  const windSpeed = forecastHourly.windspeed_10m[forecastPresentTimeIndex];
+  const humiduty = forecastHourly.relativehumidity_2m[forecastPresentTimeIndex];
+  const visibility = forecastHourly.visibility[forecastPresentTimeIndex];
+
+  const advancedInfoBlock = document.querySelector(".advanced-info");
+
+  const windSpeedInfo = createAdvanceInfoComponent(
+    "Wind",
+    windSpeed,
+    forecastHourlyUnits.windspeed_10m,
+    "/public/images/wind.gif"
+  );
+
+  const humidutyInfo = createAdvanceInfoComponent(
+    "Humidity",
+    humiduty,
+    forecastHourlyUnits.relativehumidity_2m,
+    "/public/images/humidity.gif"
+  );
+
+  const visibilityInfo = createAdvanceInfoComponent(
+    "Visibility",
+    Math.round(visibility / 1000),
+    "km",
+    "/public/images/eye.gif"
+  );
+
+  advancedInfoBlock.innerHTML += windSpeedInfo;
+  advancedInfoBlock.innerHTML += humidutyInfo;
+  advancedInfoBlock.innerHTML += visibilityInfo;
 };
 
 export default createTodayForecast;
