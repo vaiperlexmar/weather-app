@@ -6,8 +6,13 @@
   box-sizing: inherit;
 }
 
+:root {
+  --primary-color: #ffe142;
+}
+
 body {
   box-sizing: border-box;
+  background-color: var(--primary-color);
 }
 
 html {

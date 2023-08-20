@@ -31,9 +31,9 @@ const createTodayForecast = (data, now) => {
     forecastHourly.temperature_2m[forecastPresentTimeIndex]
   );
 
-  const presentTemperatureStr = `${presentTemperature}°`;
+  const presentTemperatureStr = formatTemperature(presentTemperature);
 
-  presentTemperatureBlock.textContent = presentTemperatureStr;
+  presentTemperatureBlock.textContent = `${presentTemperature}°`;
 
   // Apparent temperature
   const apparentTemperature = Math.round(
@@ -63,7 +63,7 @@ const createTodayForecast = (data, now) => {
   } else if (apparentTemperature < presentTemperature) {
     dailySummaryBlock_feelsLike.textContent = `Now it seems that ${apparentTemperature}', in fact ${presentTemperatureStr}.'`;
   } else if (apparentTemperature === presentTemperature) {
-    dailySummaryBlock_feelsLike.textContent = `Now it feels like you can trust temperature value above.`;
+    dailySummaryBlock_feelsLike.textContent = `Now it feels like you can trust temp value above.`;
   }
 
   dailySummaryBlock.append(dailySummaryBlock_feelsLike);
@@ -78,12 +78,12 @@ const createTodayForecast = (data, now) => {
     apparentTemperature >= 20
   ) {
     dailySummaryBlock_extraDescription.textContent =
-      "It feels hot because of the direct sun.";
+      "It feels hot because of the direct sun. ";
   } else if (
     weathercode[presentWeatherCode].includes("drizzle") ||
     weathercode[presentWeatherCode].includes("rain")
   ) {
-    dailySummaryBlock_extraDescription.textContent = `It feels humiduty because of the ${weathercode}.`;
+    dailySummaryBlock_extraDescription.textContent = `It feels humiduty because of the ${weathercode}. `;
   }
 
   // Today temperature range
@@ -94,7 +94,8 @@ const createTodayForecast = (data, now) => {
   const todayMinTemperatureStr = formatTemperature(todayMinTemperature);
   const todayMaxTemperatureStr = formatTemperature(todayMaxTemperature);
 
-  dailySummaryBlock_extraDescription.innerText += `Today, the temperature is felt in the range from ${todayMinTemperatureStr} to ${todayMaxTemperatureStr}`;
+  dailySummaryBlock_extraDescription.innerHTML += `
+  <p>Today, the temperature is felt in the range from ${todayMinTemperatureStr}° to ${todayMaxTemperatureStr}°<p/>`;
   dailySummaryBlock.append(dailySummaryBlock_extraDescription);
 
   // Today forecast advanced information
@@ -134,7 +135,7 @@ const createTodayForecast = (data, now) => {
 
   const weeklyForecastBlock = document.querySelector(".weekly-forecast");
 
-  for (let i = 1; i <= 5; i++) {
+  for (let i = 1; i <= 4; i++) {
     let day = createWeeklyItemMain(
       formatTemperature(forecastDaily.temperature_2m_max[i]),
       weathercode_img[forecastDaily.weathercode[i]],

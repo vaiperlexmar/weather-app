@@ -13,47 +13,34 @@
   <body>
     <div id="app">
       <header class="header m-bottom-medium">
-        <button class="header__search">
+        <button class="header__search btn">
           <span class="material-symbols-outlined"> search </span>
         </button>
         <h1 class="heading-primary" id="city-name">Name of city</h1>
       </header>
 
-      <main>
+      <main class="main">
         <div class="today-forecast">
           <p class="today-forecast__date small-light-text center-text">Date</p>
           <p
             class="today-forecast__weathercode medium-light-text center-text"
           ></p>
 
-          <p class="today-forecast__present-temp large-text"></p>
-          <h2 class="heading-secondary">Daily Summary</h2>
-          <div class="today-forecast__daily-summary">
-            <!-- Если температура меньше чем она есть на самом деле, то первая фраза
-            - Now it feels like +35', actually +31'.
-
-            <br />
-            Если температура больше, то Now it seems that +25', in fact +28'.
-
-            <br />
-            Далее нужно подкрутить определение влажности и от этого прыгать.
-
-            <br />
-            После этого нужно каким-то образом взять самый высокий и низкий
-            порог температуры дня и вывести его значения во фразе с range.
-          </p> -->
-          </div>
+          <p class="today-forecast__present-temp large-text center-text"></p>
+          <h2 class="medium-light-text m-bottom-small">Daily Summary</h2>
+          <div class="today-forecast__daily-summary small-light-text"></div>
 
           <div class="advanced-info"></div>
         </div>
-        <div class="weekly-forecast">
-          <h2 class="heading">Weekly forecast</h2>
+        <div class="weekly-forecast__header">
+          <h2 class="medium-light-text m-bottom-small">Weekly forecast</h2>
         </div>
+        <div class="weekly-forecast"></div>
       </main>
 
       <!-- TESTING PLACE -->
 
-      <div class="extra-propeties">
+      <!-- <div class="extra-propeties">
         <label for="humidity">
           Humidity
           <input
@@ -73,7 +60,7 @@
             value="visibility"
           />
         </label>
-      </div>
+      </div> -->
     </div>
     <script type="module" src="/js/main.mjs"></script>
   </body>

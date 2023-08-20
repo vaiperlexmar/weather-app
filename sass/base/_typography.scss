@@ -6,8 +6,18 @@
 
 @font-face {
   font-family: "SF Compact Display";
+  font-weight: 500;
+  src: url("/public/fonts/SFCompactDisplay-Medium.otf");
+}
+
+@font-face {
+  font-family: "SF Compact Display";
   font-weight: 600;
   src: url("/public/fonts/SFCompactDisplay-Bold.otf");
+}
+
+.text-bold {
+  font-weight: 600;
 }
 
 .heading-primary {
@@ -21,11 +31,11 @@
 }
 
 .small-light-text {
-  font-size: 1.4rem;
+  font-size: $small-light-text;
 }
 
 .medium-light-text {
-  font-size: 1.8rem;
+  font-size: $medium-light-text;
 }
 
 .large-text {

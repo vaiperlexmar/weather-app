@@ -5,8 +5,12 @@
   padding: 0;
   box-sizing: inherit; }
 
+:root {
+  --primary-color: #ffe142; }
+
 body {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  background-color: var(--primary-color); }
 
 html {
   font-size: 62.5%;
@@ -19,8 +23,16 @@ html {
 
 @font-face {
   font-family: "SF Compact Display";
+  font-weight: 500;
+  src: url("/public/fonts/SFCompactDisplay-Medium.otf"); }
+
+@font-face {
+  font-family: "SF Compact Display";
   font-weight: 600;
   src: url("/public/fonts/SFCompactDisplay-Bold.otf"); }
+
+.text-bold {
+  font-weight: 600; }
 
 .heading-primary {
   font-size: 2.4rem;
@@ -39,9 +51,70 @@ html {
 .large-text {
   font-size: 20rem; }
 
+.m-bottom-small {
+  margin-bottom: 1.4rem; }
+
 .m-bottom-medium {
   margin-bottom: 3.2rem; }
 
+.advanced-info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 4rem;
+  padding: 3rem 0;
+  border-radius: 1rem;
+  background-color: black;
+  color: var(--primary-color); }
+  .advanced-info__item {
+    text-align: center;
+    flex: 1; }
+  .advanced-info__value {
+    font-size: 1.8rem;
+    font-weight: 500; }
+  .advanced-info__img {
+    width: 3.5rem; }
+
+.btn {
+  background: transparent;
+  border: 0; }
+
+.today-forecast__date {
+  color: var(--primary-color);
+  background-color: black;
+  width: 45%;
+  line-height: 1.6;
+  max-width: 300;
+  border-radius: 2rem;
+  margin: 0 auto 1.8rem; }
+
+.today-forecast__daily-summary {
+  line-height: 1.5;
+  font-weight: 500;
+  margin-bottom: 2.4rem; }
+
+.weekly-forecast {
+  display: flex;
+  justify-content: space-between;
+  gap: 5%; }
+  .weekly-forecast__item {
+    flex: 1;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 1rem;
+    padding: 2rem 1rem; }
+  .weekly-forecast__date {
+    font-size: 1.4rem; }
+  .weekly-forecast__max-temp {
+    font-size: 1.8rem;
+    font-weight: 500; }
+  .weekly-forecast__weathercode {
+    width: 1.8rem; }
+
 .header {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); }
+  grid-template-columns: 5rem 1fr 5rem;
+  padding-top: 2rem; }
+
+.main {
+  padding: 0 3.6rem; }

@@ -1,7 +1,13 @@
+@import "abstract/variables";
+
 @import "base/base";
 @import "base/typography";
 @import "base/utilities";
 
+@import "components/advanced-info";
+@import "components/btn";
 @import "components/today-forecast";
+@import "components/weekly-forecast";
 
+@import "layout/header";
 @import "layout/main-page";

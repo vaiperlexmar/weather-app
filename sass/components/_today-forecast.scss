@@ -1,2 +1,18 @@
-// .today-forecast {
-// }
+.today-forecast {
+  &__date {
+    color: var(--primary-color);
+    background-color: black;
+    width: 45%;
+    line-height: 1.6;
+    max-width: 300;
+    border-radius: 2rem;
+
+    margin: 0 auto 1.8rem;
+  }
+
+  &__daily-summary {
+    line-height: 1.5;
+    font-weight: 500;
+    margin-bottom: 2.4rem;
+  }
+}

@@ -1,0 +1,28 @@
+.weekly-forecast {
+  display: flex;
+  justify-content: space-between;
+  gap: 5%;
+
+  &__item {
+    flex: 1;
+
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 1rem;
+
+    padding: 2rem 1rem;
+  }
+
+  &__date {
+    font-size: $small-light-text;
+  }
+
+  &__max-temp {
+    font-size: $medium-light-text;
+    font-weight: 500;
+  }
+
+  &__weathercode {
+    width: 1.8rem;
+  }
+}
