@@ -109,22 +109,19 @@ const createTodayForecast = (data, now) => {
   const windSpeedInfo = createAdvanceInfoComponent(
     "Wind",
     windSpeed,
-    forecastHourlyUnits.windspeed_10m,
-    "/public/images/wind.svg"
+    forecastHourlyUnits.windspeed_10m
   );
 
   const humidutyInfo = createAdvanceInfoComponent(
     "Humidity",
     humiduty,
-    forecastHourlyUnits.relativehumidity_2m,
-    "/public/images/humidity.svg"
+    forecastHourlyUnits.relativehumidity_2m
   );
 
   const visibilityInfo = createAdvanceInfoComponent(
     "Visibility",
     Math.round(visibility / 1000),
-    "km",
-    "/public/images/visibility.svg"
+    "km"
   );
 
   advancedInfoBlock.innerHTML += windSpeedInfo;

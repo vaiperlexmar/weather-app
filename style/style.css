@@ -73,7 +73,8 @@ html {
     font-size: 1.8rem;
     font-weight: 500; }
   .advanced-info__img {
-    width: 3.5rem; }
+    width: 3.5rem;
+    fill: var(--primary-color); }
 
 .btn {
   background: transparent;
