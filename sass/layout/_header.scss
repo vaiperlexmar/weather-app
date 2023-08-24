@@ -2,4 +2,16 @@
   display: grid;
   grid-template-columns: 5rem 1fr 5rem;
   padding-top: 2rem;
+
+  &__searchbar-input {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid black;
+    font-size: 1.8rem;
+    font-family: "SF Compact Display", sans-serif;
+
+    &:focus {
+      outline: none;
+    }
+  }
 }
