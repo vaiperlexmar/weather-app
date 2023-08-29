@@ -24,8 +24,13 @@ const dailyHeaders = [
   "weathercode",
 ];
 
-let city = "Michurinsk";
+let city;
 let cityCoordinates;
+if (document.cookie) {
+  city = document.cookie.slice(5);
+} else {
+  city = "Michurinsk";
+}
 
 // Get city
 
@@ -101,6 +106,7 @@ searchbarInput.addEventListener("input", async () => {
       await searchBarInputHandler();
     const forecast = await getForecast(chosenCityLat, chosenCityLon);
     city = cityName;
+    document.cookie = `city=${cityName}`;
     cityNameBlock.textContent = city;
     console.log(forecast);
     const now = nowDateFormatter(new Date());
