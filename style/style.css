@@ -22,15 +22,17 @@
   -webkit-animation: slide-rotate-hor-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: slide-rotate-hor-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
 
-@keyframes extension {
+@keyframes scale-up-hor-center {
   0% {
-    width: 0%; }
+    -webkit-transform: scaleX(0.4);
+    transform: scaleX(0.4); }
   100% {
-    width: 100%; } }
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1); } }
 
-.extension-animation {
-  -webkit-animation: extension 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-  animation: extension 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+.scale-up-hor-center {
+  -webkit-animation: scale-up-hor-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: scale-up-hor-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both; }
 
 *,
 *::after,
@@ -119,6 +121,18 @@ html {
   background: transparent;
   border: 0; }
 
+.suggestion {
+  width: 100%;
+  border-bottom: 1px solid black;
+  padding: 1rem 0; }
+  .suggestion__name {
+    font-size: 1.6rem; }
+  .suggestion__description {
+    font-size: 1.8rem;
+    text-overflow: ellipsis; }
+  .suggestion:hover {
+    filter: brightness(80%); }
+
 .today-forecast__date {
   color: var(--primary-color);
   background-color: black;
@@ -155,15 +169,32 @@ html {
 .header {
   display: grid;
   grid-template-columns: 5rem 1fr 5rem;
-  padding-top: 2rem; }
+  grid-template-rows: 1fr;
+  padding-top: 2rem;
+  position: relative; }
   .header__searchbar-input {
     background: transparent;
     border: 0;
-    border-bottom: 1px solid black;
     font-size: 1.8rem;
     font-family: "SF Compact Display", sans-serif; }
     .header__searchbar-input:focus {
       outline: none; }
+  .header__suggestions-container {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    max-height: 20rem;
+    height: auto;
+    overflow-y: auto;
+    background-color: var(--primary-color);
+    border-bottom: 2px solid black;
+    z-index: 9999;
+    box-shadow: 2px 4px 4px 1px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-rows: repeat(3, auto);
+    grid-template-rows: auto; }
 
 .main {
   padding: 0 3.6rem; }

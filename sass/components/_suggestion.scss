@@ -1,0 +1,18 @@
+.suggestion {
+  width: 100%;
+  border-bottom: 1px solid black;
+  padding: 1rem 0;
+
+  &__name {
+    font-size: 1.6rem;
+  }
+
+  &__description {
+    font-size: 1.8rem;
+    text-overflow: ellipsis;
+  }
+
+  &:hover {
+    filter: brightness(80%);
+  }
+}

@@ -56,6 +56,9 @@ const createTodayForecast = (data, now) => {
   const dailySummaryBlock = document.querySelector(
     ".today-forecast__daily-summary"
   );
+
+  dailySummaryBlock.innerHTML = "";
+
   const dailySummaryBlock_feelsLike = document.createElement("p");
 
   if (apparentTemperature > presentTemperature) {
@@ -83,7 +86,9 @@ const createTodayForecast = (data, now) => {
     weathercode[presentWeatherCode].includes("drizzle") ||
     weathercode[presentWeatherCode].includes("rain")
   ) {
-    dailySummaryBlock_extraDescription.textContent = `It feels humiduty because of the ${weathercode}. `;
+    dailySummaryBlock_extraDescription.textContent = `It feels humiduty because of the ${weathercode[
+      presentWeatherCode
+    ].toLowerCase()}. `;
   }
 
   // Today temperature range
@@ -124,6 +129,7 @@ const createTodayForecast = (data, now) => {
     "km"
   );
 
+  advancedInfoBlock.innerHTML = "";
   advancedInfoBlock.innerHTML += windSpeedInfo;
   advancedInfoBlock.innerHTML += humidutyInfo;
   advancedInfoBlock.innerHTML += visibilityInfo;
@@ -131,6 +137,8 @@ const createTodayForecast = (data, now) => {
   // Weekly Forecast
 
   const weeklyForecastBlock = document.querySelector(".weekly-forecast");
+
+  weeklyForecastBlock.innerHTML = "";
 
   for (let i = 1; i <= 4; i++) {
     let day = createWeeklyItemMain(

@@ -1,5 +1,7 @@
 "use strict";
 
+const GEOCODE_URL = `https://geocode.maps.co/search?q=`;
+
 const header = document.querySelector(".header");
 const searchbarOpener = document.querySelector(".header__searchbar-opener");
 const searchbarCloser = document.querySelector(".header__searchbar-closer");
@@ -8,6 +10,9 @@ const cityInterfaceName = document.querySelector("#city-name");
 // Creating of searchbar
 const searchbarInput = document.createElement("input");
 searchbarInput.classList.add("header__searchbar-input");
+// Suggestions container
+const suggestionsContainer = document.createElement("div");
+suggestionsContainer.classList.add("header__suggestions-container");
 
 function searchbarOpenerAnimation() {
   searchbarOpener.removeEventListener("click", searchbarOpenerAnimation);
@@ -38,10 +43,14 @@ function searchbarOpenerAnimation() {
     () => searchbarInput.setAttribute("placeholder", "Type your city"),
     600
   );
+
+  // Suggestions container add
+  header.appendChild(suggestionsContainer);
 }
 
 function searchbarCloserAnimation() {
   // Disappearing input
+  searchbarInput.classList.remove("scale-up-hor-center");
   searchbarInput.classList.add("slide-rotate-hor-bottom");
   setTimeout(() => (searchbarInput.value = ""), 600);
   setTimeout(() => header.removeChild(searchbarInput), 600);
@@ -63,7 +72,79 @@ function searchbarCloserAnimation() {
   cityInterfaceName.classList.remove("slide-rotate-hor-bottom");
   cityInterfaceName.classList.add("slide-rotate-hor-top");
   setTimeout(() => (cityInterfaceName.style.display = "block"), 500);
+
+  // Disappearing suggestions block
+  suggestionsContainer.classList.add("slide-rotate-hor-bottom");
+  setTimeout(() => (suggestionsContainer.innerHTML = ""), 500);
+  suggestionsContainer.classList.remove("slide-rotate-hor-bottom");
+  header.removeChild(suggestionsContainer);
 }
 
 searchbarOpener.addEventListener("click", searchbarOpenerAnimation);
 searchbarCloser.addEventListener("click", searchbarCloserAnimation);
+
+let searchTimeout;
+let chosenCity;
+
+async function searchBarInputHandler() {
+  clearTimeout(searchTimeout);
+  const query = searchbarInput.value;
+
+  return new Promise((resolve, reject) => {
+    searchTimeout = setTimeout(async () => {
+      try {
+        if (query.trim() === "") {
+          suggestionsContainer.innerHTML = "";
+
+          return;
+        }
+        const response = await fetch(`${GEOCODE_URL}${query}`);
+        const data = await response.json();
+
+        suggestionsContainer.innerHTML = "";
+        data.forEach((suggestion) => {
+          const suggestionItem = document.createElement("div");
+          suggestionItem.classList.add("suggestion");
+
+          // Make filling of suggestion
+          const suggestionItemName = document.createElement("h3");
+          const suggestionItemDiscription = document.createElement("p");
+          suggestionItemName.classList.add("suggestion__name");
+          suggestionItemDiscription.classList.add("suggestion__discription");
+
+          const partsOfName = suggestion["display_name"].split(",");
+          suggestionItemName.textContent = partsOfName[0].trim();
+          suggestionItemDiscription.textContent = partsOfName
+            .slice(1)
+            .join(",")
+            .trim();
+          suggestionItem.appendChild(suggestionItemName);
+          suggestionItem.appendChild(suggestionItemDiscription);
+          suggestionsContainer.appendChild(suggestionItem);
+
+          // Declare value of number this suggestion
+          suggestionItem.setAttribute("data-value", data.indexOf(suggestion));
+
+          // Add function, which give longitude and latitude
+          suggestionItem.addEventListener("click", () => {
+            const dataValue = suggestionItem.getAttribute("data-value");
+            chosenCity = data[dataValue];
+            const chosenCityLat = chosenCity["lat"];
+            const chosenCityLon = chosenCity["lon"];
+            const cityName = suggestionItemName.textContent;
+
+            // Visual (close a searchbar)
+
+            searchbarCloser.click();
+            resolve([chosenCityLat, chosenCityLon, cityName]);
+          });
+        });
+      } catch (error) {
+        console.error("Error fetching suggestions:", error);
+        reject(error);
+      }
+    }, 500);
+  });
+}
+
+export { searchBarInputHandler, searchbarInput };

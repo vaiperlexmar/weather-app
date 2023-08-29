@@ -4,6 +4,10 @@ import nowDateFormatter from "./user-interface/now-date-formatter.mjs";
 import createTodayForecast from "./weather/create-today-forecast.mjs";
 import userPresentDateFormatter from "./user-interface/user-present-date-formatter.mjs";
 import extraPropertiesHandler from "./weather/extra-properies-handler.mjs";
+import {
+  searchBarInputHandler,
+  searchbarInput,
+} from "./user-interface/searchbar.mjs";
 
 const GEOCODE_URL = `https://geocode.maps.co/search?q=`;
 const hourlyHeaders = [
@@ -57,7 +61,6 @@ promise
   .then((forecastItem) => {
     const now = nowDateFormatter(new Date());
     createTodayForecast(forecastItem, now);
-    console.log(forecastItem);
   });
 
 async function getForecast(latitude, longitude) {
@@ -91,3 +94,21 @@ presentDateBlock.textContent = userPresentDateFormatter();
 const extraProperties = document.querySelectorAll(".extra-propeties__item");
 
 extraPropertiesHandler(extraProperties, hourlyHeaders);
+
+searchbarInput.addEventListener("input", async () => {
+  try {
+    const [chosenCityLat, chosenCityLon, cityName] =
+      await searchBarInputHandler();
+    const forecast = await getForecast(chosenCityLat, chosenCityLon);
+    city = cityName;
+    cityNameBlock.textContent = city;
+    console.log(forecast);
+    const now = nowDateFormatter(new Date());
+
+    // Clear main blocks
+
+    createTodayForecast(forecast, now);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+});
