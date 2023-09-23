@@ -5,17 +5,9 @@ import weathercode_img from "../utility/weather-icons.mjs";
 import createAdvanceInfoComponent from "./create-advance-info-item.mjs";
 import createWeeklyItemMain from "./create-weekly-item-main.mjs";
 import weeklyDateFormatter from "../user-interface/user-weekly-date-formatter.mjs";
+import formatTemperature from "../utility/temperature-formatter.mjs";
 
 const createTodayForecast = (data, now) => {
-  // Temperature formatter
-
-  function formatTemperature(temperature) {
-    const roundedTemperature = Math.round(temperature);
-    return roundedTemperature > 0
-      ? `+${roundedTemperature}`
-      : `${roundedTemperature}`;
-  }
-
   // Present Temperature
   const presentTemperatureBlock = document.querySelector(
     ".today-forecast__present-temp"
@@ -62,9 +54,9 @@ const createTodayForecast = (data, now) => {
   const dailySummaryBlock_feelsLike = document.createElement("p");
 
   if (apparentTemperature > presentTemperature) {
-    dailySummaryBlock_feelsLike.textContent = `Now it feels like ${apparentTemperatureStr}', actually ${presentTemperatureStr}'.`;
+    dailySummaryBlock_feelsLike.textContent = `Now it feels like ${apparentTemperatureStr}°, actually ${presentTemperatureStr}°.`;
   } else if (apparentTemperature < presentTemperature) {
-    dailySummaryBlock_feelsLike.textContent = `Now it seems that ${apparentTemperature}', in fact ${presentTemperatureStr}.'`;
+    dailySummaryBlock_feelsLike.textContent = `Now it seems that ${apparentTemperature}°, in fact ${presentTemperatureStr}°.`;
   } else if (apparentTemperature === presentTemperature) {
     dailySummaryBlock_feelsLike.textContent = `Now it feels like you can trust temp value above.`;
   }

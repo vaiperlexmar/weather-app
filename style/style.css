@@ -10,6 +10,10 @@
   -webkit-animation: slide-rotate-hor-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: slide-rotate-hor-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
 
+.slower-slide-rotate-hor-bottom {
+  -webkit-animation: slide-rotate-hor-bottom 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-rotate-hor-bottom 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+
 @keyframes slide-rotate-hor-top {
   0% {
     -webkit-transform: translateY(15px) rotateX(90deg);
@@ -21,6 +25,10 @@
 .slide-rotate-hor-top {
   -webkit-animation: slide-rotate-hor-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: slide-rotate-hor-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+
+.slower-slide-rotate-hor-top {
+  -webkit-animation: slide-rotate-hor-top 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-rotate-hor-top 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
 
 @keyframes scale-up-hor-center {
   0% {
@@ -39,7 +47,12 @@
 *::before {
   margin: 0;
   padding: 0;
-  box-sizing: inherit; }
+  box-sizing: border-box;
+  scrollbar-color: transparent transparent; }
+  * ::-webkit-scrollbar-color,
+  *::after ::-webkit-scrollbar-color,
+  *::before ::-webkit-scrollbar-color {
+    background-color: transparent; }
 
 :root {
   --primary-color: #ffe142; }
@@ -121,6 +134,38 @@ html {
   background: transparent;
   border: 0; }
 
+.daily-forecast {
+  display: none;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2.4rem;
+  overflow: overlay;
+  border: 1px solid black;
+  border-radius: 1rem;
+  padding: 0.5rem 0;
+  gap: 3%; }
+  .daily-forecast__item {
+    flex: 1;
+    text-align: center;
+    padding: 0.5rem 2rem; }
+  .daily-forecast__temperature {
+    font-size: 1.8rem; }
+  .daily-forecast__weathercode {
+    width: 3rem; }
+
+.daily-summary {
+  line-height: 1.5;
+  font-weight: 500;
+  margin-bottom: 2.4rem; }
+  .daily-summary__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
+  .daily-summary__get-full {
+    display: flex;
+    align-items: center;
+    cursor: pointer; }
+
 .suggestion {
   width: 100%;
   border-bottom: 1px solid black;
@@ -150,21 +195,21 @@ html {
 .weekly-forecast {
   display: flex;
   justify-content: space-between;
-  gap: 5%;
+  gap: 3%;
   padding-bottom: 2rem; }
   .weekly-forecast__item {
     flex: 1;
     text-align: center;
     border: 1px solid black;
     border-radius: 1rem;
-    padding: 2rem 1rem; }
+    padding: 2rem 1.5rem; }
   .weekly-forecast__date {
     font-size: 1.4rem; }
   .weekly-forecast__max-temp {
     font-size: 1.8rem;
     font-weight: 500; }
   .weekly-forecast__weathercode {
-    width: 1.8rem; }
+    width: 2rem; }
 
 .header {
   display: grid;

@@ -1,0 +1,17 @@
+.daily-summary {
+  line-height: 1.5;
+  font-weight: 500;
+  margin-bottom: 2.4rem;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__get-full {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+}

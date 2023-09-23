@@ -1,7 +1,7 @@
 .weekly-forecast {
   display: flex;
   justify-content: space-between;
-  gap: 5%;
+  gap: 3%;
   padding-bottom: 2rem;
 
   &__item {
@@ -11,7 +11,7 @@
     border: 1px solid black;
     border-radius: 1rem;
 
-    padding: 2rem 1rem;
+    padding: 2rem 1.5rem;
   }
 
   &__date {
@@ -24,6 +24,6 @@
   }
 
   &__weathercode {
-    width: 1.8rem;
+    width: 2rem;
   }
 }

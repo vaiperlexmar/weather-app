@@ -23,6 +23,10 @@
       </header>
 
       <main class="main">
+        <!-- Block of forecast for present and daily time -->
+
+        <!-- Present Time -->
+
         <div class="today-forecast">
           <p class="today-forecast__date small-light-text center-text">Date</p>
           <p
@@ -30,11 +34,28 @@
           ></p>
 
           <p class="today-forecast__present-temp large-text center-text"></p>
-          <h2 class="medium-light-text m-bottom-small">Daily Summary</h2>
+
+          <!-- Daily Time -->
+
+          <div class="daily-summary__header m-bottom-small">
+            <h2 class="medium-light-text">Daily Summary</h2>
+            <span class="daily-summary__get-full small-light-text"
+              >Full forecast
+              <span class="material-symbols-outlined">
+                chevron_right
+              </span></span
+            >
+          </div>
+
           <div class="today-forecast__daily-summary small-light-text"></div>
+
+          <div class="daily-forecast"></div>
 
           <div class="advanced-info"></div>
         </div>
+
+        <!-- Forecast for a week -->
+
         <div class="weekly-forecast__header">
           <h2 class="medium-light-text m-bottom-small">Weekly forecast</h2>
         </div>
@@ -71,5 +92,10 @@
       type="module"
       src="/js/user-interface/change-background.mjs"
     ></script>
+    <script
+      type="module"
+      src="/js/weather/create-full-daily-forecast.mjs"
+    ></script>
+    <script src="/js/user-interface/full-daily-forecast-opener.mjs"></script>
   </body>
 </html>

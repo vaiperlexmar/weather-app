@@ -1,0 +1,27 @@
+.daily-forecast {
+  display: none;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2.4rem;
+  overflow: overlay;
+  border: 1px solid black;
+  border-radius: 1rem;
+  padding: 0.5rem 0;
+  gap: 3%;
+
+  &__item {
+    flex: 1;
+
+    text-align: center;
+
+    padding: 0.5rem 2rem;
+  }
+
+  &__temperature {
+    font-size: 1.8rem;
+  }
+
+  &__weathercode {
+    width: 3rem;
+  }
+}

@@ -8,6 +8,7 @@ import {
   searchBarInputHandler,
   searchbarInput,
 } from "./user-interface/searchbar.mjs";
+import createFullDailyForecast from "./weather/create-full-daily-forecast.mjs";
 
 const GEOCODE_URL = `https://geocode.maps.co/search?q=`;
 const hourlyHeaders = [
@@ -26,6 +27,8 @@ const dailyHeaders = [
 
 let city;
 let cityCoordinates;
+
+// Save city name
 if (document.cookie) {
   city = document.cookie.slice(5);
 } else {
@@ -61,11 +64,14 @@ promise
   })
   .then((cityCoordinates) => {
     const forecast = getForecast(cityCoordinates.lat, cityCoordinates.lon);
+
     return forecast;
   })
   .then((forecastItem) => {
+    console.log(forecastItem);
     const now = nowDateFormatter(new Date());
     createTodayForecast(forecastItem, now);
+    createFullDailyForecast(forecastItem.hourly, now);
   });
 
 async function getForecast(latitude, longitude) {
@@ -87,7 +93,6 @@ async function getForecast(latitude, longitude) {
 
 // Interface info
 
-const todayForecastBlock = document.querySelector(".today-forecast");
 const cityNameBlock = document.querySelector("#city-name");
 const presentDateBlock = document.querySelector(".today-forecast__date");
 
@@ -105,15 +110,19 @@ searchbarInput.addEventListener("input", async () => {
     const [chosenCityLat, chosenCityLon, cityName] =
       await searchBarInputHandler();
     const forecast = await getForecast(chosenCityLat, chosenCityLon);
+
+    // City changing
     city = cityName;
     document.cookie = `city=${cityName}`;
     cityNameBlock.textContent = city;
-    console.log(forecast);
+
     const now = nowDateFormatter(new Date());
 
-    // Clear main blocks
-
+    // Creating and adding of forecast
     createTodayForecast(forecast, now);
+
+    // Creating and adding daily forecast
+    createFullDailyForecast(forecast.hourly, now);
   } catch (error) {
     console.error("Error:", error);
   }
