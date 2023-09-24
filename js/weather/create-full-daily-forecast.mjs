@@ -1,6 +1,6 @@
 "use strict";
 
-import weathercode from "../utility/weathercode.mjs";
+import weathercode_img from "../utility/weather-icons.mjs";
 import formatTemperature from "../utility/temperature-formatter.mjs";
 
 const dailyForecastBlock = document.querySelector(".daily-forecast");
@@ -9,8 +9,8 @@ function createDailyForecastItem(time, weathercodeNumber, temperature) {
   return `
     <div class="daily-forecast__item">
       <img class="daily-forecast__weathercode" src="/public/images/weathercodes/${
-        weathercode[weathercodeNumber]
-      }.svg" alt="" />
+        weathercode_img[weathercodeNumber]
+      }" alt="" />
       <span class="daily-forecast__temperature">${formatTemperature(
         temperature
       )}°</span>
