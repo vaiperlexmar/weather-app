@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "compile:sass": "node-sass sass/main.scss style/style.css -w"
+    "compile:sass": "node-sass sass/main.scss style/style.css -w",
+    "host": "vite --host"
   },
   "devDependencies": {
     "vite": "^4.4.5"

@@ -132,7 +132,7 @@ const createTodayForecast = (data, now) => {
 
   weeklyForecastBlock.innerHTML = "";
 
-  for (let i = 1; i <= 4; i++) {
+  for (let i = 1; i <= 6; i++) {
     let day = createWeeklyItemMain(
       formatTemperature(forecastDaily.temperature_2m_max[i]),
       weathercode_img[forecastDaily.weathercode[i]],

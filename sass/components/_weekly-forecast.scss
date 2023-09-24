@@ -3,6 +3,7 @@
   justify-content: space-between;
   gap: 3%;
   padding-bottom: 2rem;
+  overflow: auto;
 
   &__item {
     flex: 1;
@@ -11,7 +12,7 @@
     border: 1px solid black;
     border-radius: 1rem;
 
-    padding: 2rem 1.5rem;
+    padding: 2rem 2rem;
   }
 
   &__date {
