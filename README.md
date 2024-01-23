@@ -6,7 +6,7 @@ When I started this project I wanted to learn how to use following things:
 <ul>
   <li>Ajax</li>
   <li>API</li>
-  <li>Vanilla JS in more or less real project</li>
+  <li>Vanilla JS</li>
 </ul>
 
 ### Description 
