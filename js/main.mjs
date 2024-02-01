@@ -39,7 +39,9 @@ if (document.cookie) {
 
 async function fetchCoordinates() {
   try {
-    const response = await fetch(`${GEOCODE_URL}${city}`);
+    const response = await fetch(
+      `${GEOCODE_URL}${city}&api_key=65bbd8f2692f8844032358lkz899b02`
+    );
     if (!response.ok) {
       throw new Error(`HTTP error: ${response.status}`);
     }

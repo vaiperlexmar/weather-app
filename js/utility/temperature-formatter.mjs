@@ -2,11 +2,7 @@
 
 function formatTemperature(temperature) {
   const roundedTemperature = Math.round(temperature);
-  return roundedTemperature > 0
-    ? `+${roundedTemperature}`
-    : roundedTemperature < 0
-    ? `-${roundedTemperature}`
-    : undefined;
+  return roundedTemperature;
 }
 
 export default formatTemperature;

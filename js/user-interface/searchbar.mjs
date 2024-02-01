@@ -29,7 +29,7 @@ function searchbarOpenerAnimation() {
   setTimeout(() => searchbarOpener.classList.add("slide-rotate-hor-top"), 600);
 
   // Close button appears
-  setTimeout(() => searchbarCloser.classList.toggle("hidden"), 600);
+  setTimeout(() => searchbarCloser.classList.remove("hidden"), 600);
   setTimeout(() => (searchbarCloser.style.gridRow = "1"), 600);
   searchbarCloser.classList.add("slide-rotate-hor-top");
 
@@ -58,7 +58,7 @@ function searchbarCloserAnimation() {
   // Disappearing cross
   searchbarCloser.classList.remove("slide-rotate-hor-top");
   searchbarCloser.classList.add("slide-rotate-hor-bottom");
-  setTimeout(() => searchbarCloser.classList.toggle("hidden"), 600);
+  setTimeout(() => searchbarCloser.classList.add("hidden"), 600);
   setTimeout(() => (searchbarCloser.style.gridRow = "3"), 600);
 
   // Search button moves to left side
@@ -98,7 +98,9 @@ async function searchBarInputHandler() {
 
           return;
         }
-        const response = await fetch(`${GEOCODE_URL}${query}`);
+        const response = await fetch(
+          `${GEOCODE_URL}${query}&api_key=65bbd8f2692f8844032358lkz899b02`
+        );
         const data = await response.json();
 
         suggestionsContainer.innerHTML = "";
